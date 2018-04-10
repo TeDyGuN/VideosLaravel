@@ -2,10 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Video;
 use App\Comment;
+
 use App\User;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Redirect;
+//use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\View;
+//use Barryvdh\DomPDF\PDF;
+//use Barryvdh\DomPDF;
+use Validator;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 class VideoController extends Controller
 {
     public function createVideo(){
@@ -18,14 +35,29 @@ class VideoController extends Controller
           'video' => 'mimes:mp4'
       ]);
       $video = new Video();
+      //subida Miniatura
+      $image = $request->file('mini');
+      if($image)
+      {
+        $image_path = time().$image->getClientOriginalName();
+        \Storage::disk('images')->put($image_path, \File::get($image));
+        $video->image = $image_path;
+      }
+      //subida videos
+      $videos = $request->file('video');
+      if($videos)
+      {
+        $video_path = time().$videos->getClientOriginalName();
+        \Storage::disk('videos')->put($video_path, \File::get($videos));
+        $video->video_path = $video_path;
+      }
+
       $video->tittle = $request->tittle;
       $video->description = $request->description;
-      $video->image = $request->image;
-      $video->video_path = $request->video_path;
-      $video->status = $request->status;
+      $video->status = 'OK';
       $video->save();
 
-      return redirect()->back();
+      return Redirect::back()->with(['success' => ' ']);
 
     }
 }

@@ -27,7 +27,7 @@
                              </ul>
                          </div>
                      @endif
-                         <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data"  action="{{ url('/video/save') }}">
+                         <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data"  action="{{ url('video/save') }}">
                              {{ csrf_field() }}
                              <div class="form-group {{ $errors->has('tittle') ? ' has-error' : '' }}">
                                  <label for="tittle" class="col-md-4 control-label">Titulo</label>

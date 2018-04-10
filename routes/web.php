@@ -28,4 +28,4 @@ Route::get('/crear-video', array(
 
 Route::get('admin', 'HomeController@panel');
 
-  Route::post('/video/save', 'VideoController@saveVideo');
+Route::post('/video/save', 'VideoController@saveVideo');

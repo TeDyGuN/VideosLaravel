@@ -34,7 +34,7 @@
 
         <ul>
             <li class="active">
-                <a href="{{ url('/panel') }}" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Inicio</span></a>
+                <a href="{{ url('/') }}" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Inicio</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-lg fa-fw fa-vimeo"></i> <span class="menu-item-parent">Videos</span></a>

@@ -20,8 +20,6 @@ class CreateVideosTable extends Migration
             $table->string('status');
             $table->string('image');
             $table->string('video_path');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

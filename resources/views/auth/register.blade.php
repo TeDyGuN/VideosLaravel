@@ -70,7 +70,7 @@
     </form>
     <div class="perron">
 
-      <a href="{{ url('/') }}" style="margin-right: -4px;">
+      <a href="{{ url('/') }}" style="margin-right: -5px;">
         <button  class="btn btn-primary button-ing">
             Inicio
         </button>
