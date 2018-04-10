@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +8,10 @@
   <title>Gama - Bolivia</title>
 	{{-- <link rel="stylesheet" href="https://www.clipzui.com/assets/css/style.css?t=81415318" type="text/css" media="all" /> --}}
   <link rel="stylesheet" href="{{ asset('css/video.css')}}" type="text/css" media="all" />
-	<script src="https://www.clipzui.com/assets/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{ asset('css/helpers.css')}}" type="text/css" media="all" />
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('plantilla/css/font-awesome.min.css') }}">
+
+  /<script src="{{ asset('js/jquery.min.js' )}}"></script>
 	<!--[if lt IE 9]>
 	<script src="https://www.clipzui.com/assets/js/html5shiv.min.js"></script>
 	<script src="https://www.clipzui.com/assets/js/respond.min.js"></script>
@@ -21,23 +23,50 @@
 <div id="nav-desktop">
   <ul>
     <li id="menu-btn" role="button">
-		<i class="fa fa-reorder fa-lg"></i>
+		    <i class="fa fa-reorder fa-lg"></i>
     </li>
     <li class="navbar-brand">
-      <a href="https://www.clipzui.com/"><img src="https://www.clipzui.com/assets/images/logo.png" alt="ClipZui.Com"></a>
+      <a href="{{ url('/')}} "><img src="{{ asset('img/logo.png')}}" alt="Videos Bolivia"></a>
     </li>
-	<li class="search">
-		<form class="form-wrapper cf" method="get" action="https://www.clipzui.com/search">
-			<input id="autocomplete" autocomplete="off" type="text" placeholder="Search..." name="k">
-			<button type="submit"><i class="fa fa-search"></i></button>
-		</form>
+	   <li class="search">
+		     <form class="form-wrapper cf" method="get" action="https://www.clipzui.com/search">
+			        <input id="autocomplete" autocomplete="off" type="text" placeholder="Buscar..." name="k">
+			        <button type="submit"><i class="fa fa-search"></i></button>
+		     </form>
     </li>
+    @guest
+        <li class="pull-right" style="padding-top: 6px;"><a class="links-nav" href="{{ route('login') }}">| Ingresar</a></li>
+        <li class="pull-right" style="padding-top: 6px;"><a class="links-nav" href="{{ route('register') }}">Registrarse</a></li>
+    @else
+      @if(Auth::user()->role == 'ADMIN')
+        <li class="pull-right" style="padding-top: 6px;">
+          <a class="links-nav" href="{{ url('admin') }}">{{ Auth::user()->name }}</a>
+        </li>
+      @else
+        <li class="pull-right" style="padding-top: 6px;"><a class="links-nav" href="#">{{ Auth::user()->name }} </a></li>
+      @endif
+
+      <li class="pull-right" style="padding-top: 6px;">
+          <a class="links-nav" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+              Logout |
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+          </form>
+      </li>
+    @endguest
   </ul>
+  {{-- <ul class="nav navbar-nav navbar-right pull-right">
+
+  </ul> --}}
 </div>
 <div id="nav-mobile">
 	<div class="navbar-search">
 		<div id="menu-btn" class="menu">
-		  <a href="javascript:;"><i class="fa fa-reorder fa-lg"></i></a>
+		  <a href="javascript:;"><i class="fa fa-bars fa-lg"></i></a>
 		</div>
 		<div class="logo">
 		  <a href="https://www.clipzui.com/"><img src="https://www.clipzui.com/assets/images/logo.png" alt="ClipZui.Com"></a>
@@ -118,24 +147,27 @@
 
 <div id="ajax-items">
   <ul class="list-video">
-    <li>
-      <a href="https://www.clipzui.com/video/s3s3w4d48426g3r4n4w4e3.html">
-        <div class="item">
-          <div class="thumb">
-            <img src="https://img.youtube.com/vi/uCUpvTMis-Y/mqdefault.jpg" alt="Real Life Trick Shots 2 | Dude Perfect" />
-            <span class="video-time">4:18</span>
-          </div>
-          <h2 class="name" title="Real Life Trick Shots 2 | Dude Perfect">My Chemical Romance - The Ghost of You</h2>
-          <span class="user_ytb"><i class="fa fa-user-circle-o"></i> Administrador</span>
-          <span class="meta-video">
-            <span class="info">
-              <i class="fa fa-eye"></i> 49.494.578 views<span class="cham"></span>1 months ago
+    @foreach ($videos as $v)
+      <li>
+        <a href="#">
+          <div class="item">
+            <div class="thumb">
+              <img src="{{ url('imagen/'.$v->image) }}" alt="{{ $v->tittle}}" />
+              <span class="video-time">4:18</span>
+            </div>
+            <h2 class="name" title="{{ $v->tittle }}">{{ $v->tittle }}</h2>
+            <span class="user_ytb"><i class="fa fa-user-circle-o"></i> VideosBolivia</span>
+            <span class="meta-video">
+              <span class="info">
+                <i class="fa fa-eye"></i> 49.494.578 views<span class="cham"></span>1 months ago
+              </span>
             </span>
-          </span>
-        </div>
-      </a>
-    </li>
-    <li>
+          </div>
+        </a>
+      </li>
+    @endforeach
+
+    {{-- <li>
       <a href="https://www.clipzui.com/video/q2d495o4h3o4q3o4p5a4w4.html">
         <div class="item">
           <div class="thumb">
@@ -151,7 +183,7 @@
           </span>
         </div>
       </a>
-    </li>
+    </li> --}}
   </ul>
   <div id="next-page">
     <div class="container clearfix">

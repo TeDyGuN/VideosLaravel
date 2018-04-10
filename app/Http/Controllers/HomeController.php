@@ -29,4 +29,8 @@ class HomeController extends Controller
     public function panel(){
         return view('home');
     }
+    public function indexVideos()
+    {
+        return view('welcome');
+    }
 }

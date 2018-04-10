@@ -58,6 +58,9 @@ class VideoController extends Controller
       $video->save();
 
       return Redirect::back()->with(['success' => ' ']);
-
+    }
+    public function getImage($filename){
+      $file = \Storage::disk('images')->get($filename);
+      return \Response($file, 200);
     }
 }

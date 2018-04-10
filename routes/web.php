@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
 
 Auth::routes();
 
@@ -29,3 +27,4 @@ Route::get('/crear-video', array(
 Route::get('admin', 'HomeController@panel');
 
 Route::post('/video/save', 'VideoController@saveVideo');
+Route::get('/imagen/{archivo}', 'VideoController@getImage');
