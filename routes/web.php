@@ -28,3 +28,6 @@ Route::get('admin', 'HomeController@panel');
 
 Route::post('/video/save', 'VideoController@saveVideo');
 Route::get('/imagen/{archivo}', 'VideoController@getImage');
+//Descripcion de Video
+Route::get('/video/{id}', 'VideoController@getDescription');
+Route::get('/prueba', 'VideoController@prueba');

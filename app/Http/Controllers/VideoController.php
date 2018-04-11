@@ -8,6 +8,7 @@ use App\Comment;
 
 use App\User;
 
+use FFMpeg;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Carbon\Carbon;
@@ -49,7 +50,10 @@ class VideoController extends Controller
       {
         $video_path = time().$videos->getClientOriginalName();
         \Storage::disk('videos')->put($video_path, \File::get($videos));
+        $media = FFMpeg::open(\File::get($videos));
+        $durationInSeconds = $media->getDurationInSeconds(); // returns an int
         $video->video_path = $video_path;
+        $video->duration = $durationInSeconds;
       }
 
       $video->tittle = $request->tittle;
@@ -62,5 +66,20 @@ class VideoController extends Controller
     public function getImage($filename){
       $file = \Storage::disk('images')->get($filename);
       return \Response($file, 200);
+    }
+    public function getDescription($id){
+      $video = Video::find($id);
+      return view('Video.videoDescription', compact('video'));
+    }
+    public function prueba(){
+      $url = storage_path('app/videos/1523470363videoplayback.mp4');
+      //$exel = 'ffmpeg -i '.$url.' 2>&1 | grep Duration | awk \'{print $2}\' | tr -d ,';
+      //dd($exel);
+      //echo exec('ffmpeg -i '.$url.' 2>&1 | grep Duration | awk \'{print $2}\' | tr -d ,', $duration);
+      var_dump(shell_exec('ffmpeg -i /opt/lampp/htdocs/vides/storage/app/videos/1523470363videoplayback.mp4 2>&1 | grep Duration | awk \'{print $2}\' | tr -d ,'));
+      // $duration = FFMpeg\FFProbe::create()
+      //   ->format($file)
+      //   ->get('duration');
+      //var_dump($duration);
     }
 }
