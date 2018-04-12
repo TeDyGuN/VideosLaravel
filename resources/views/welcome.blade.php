@@ -149,17 +149,17 @@
   <ul class="list-video">
     @foreach ($videos as $v)
       <li>
-        <a href="#">
+        <a href="{{ url('video/'.$v->id) }}">
           <div class="item">
             <div class="thumb">
               <img src="{{ url('imagen/'.$v->image) }}" alt="{{ $v->tittle}}" />
-              <span class="video-time">4:18</span>
+              <span class="video-time">{{ $v->duration }}</span>
             </div>
             <h2 class="name" title="{{ $v->tittle }}">{{ $v->tittle }}</h2>
             <span class="user_ytb"><i class="fa fa-user-circle-o"></i> VideosBolivia</span>
             <span class="meta-video">
               <span class="info">
-                <i class="fa fa-eye"></i> 49.494.578 views<span class="cham"></span>1 months ago
+                <i class="fa fa-eye"></i> {{ $v->visitas }} Visitas<span class="cham"></span>
               </span>
             </span>
           </div>
@@ -185,15 +185,6 @@
       </a>
     </li> --}}
   </ul>
-  <div id="next-page">
-    <div class="container clearfix">
-      <a rel="next" href="https://www.clipzui.com/category/sports?page=93d3p5l3a3j4" data-ajax="{&quot;type&quot;:&quot;category&quot;,&quot;data&quot;:&quot;r213a643x4x5p4o406x5s4&quot;,&quot;key&quot;:&quot;93d3p5l3a3j4&quot;}">
-        <div class="ajax-page" >
-          <span class="text">Siguiente Página »</span>
-        </div>
-      </a>
-    </div>
-  </div>
 </div>
 
 <script>"function"==typeof history.replaceState&&history.replaceState({"type":"category","data":"r213a643x4x5p4o406x5s4"},"",window.location.href);</script>
@@ -209,17 +200,8 @@
 <div class="back-fixed">
 <a id="scrolltop" class="back-to-top" href="javascript:;"><i class="fa fa-arrow-up"></i></a>
 </div>
-<link rel="stylesheet" href="https://www.clipzui.com/assets/js/jquery-ui/1.12.1/jquery-ui.css" type="text/css" media="all" />
-<script src="https://www.clipzui.com/assets/js/jquery-ui/1.12.1/jquery-ui.js"></script>
-<script>function scrolltop(){$(window).scroll(function(){$(this).scrollTop()>500?$(".back-fixed").fadeIn(600):$(".back-fixed").fadeOut(600)}),$("#scrolltop").click(function(o){return o.preventDefault(),$("html, body").animate({scrollTop:0},600),!1})};var suggestCallBack,MsuggestCallBack;$(function(){scrolltop();function a(){e.toggleClass(j),d.toggleClass(i),f.toggleClass(k),g.toggleClass(l)}function b(){e.addClass(j),d.animate({left:"0px"},n),f.animate({left:o},n),g.animate({left:o},n)}function c(){e.removeClass(j),d.animate({left:"-"+o},n),f.animate({left:"0px"},n),g.animate({left:"0px"},n)}var d=$(".pushy"),e=$("body"),f=$("#container"),g=$(".push"),h=$(".site-overlay"),i="pushy-left pushy-open",j="pushy-active",k="container-push",l="push-push",m=$("#menu-btn, .pushy a"),n=200,o=d.width()+"px";if(cssTransforms3d=function(){var a=document.createElement("p"),b=!1,c={webkitTransform:"-webkit-transform",OTransform:"-o-transform",msTransform:"-ms-transform",MozTransform:"-moz-transform",transform:"transform"};document.body.insertBefore(a,null);for(var d in c)void 0!==a.style[d]&&(a.style[d]="translate3d(1px,1px,1px)",b=window.getComputedStyle(a).getPropertyValue(c[d]));return document.body.removeChild(a),void 0!==b&&b.length>0&&"none"!==b}())m.click(function(){a()}),h.click(function(){a()});else{d.css({left:"-"+o}),f.css({"overflow-x":"hidden"});var p=!0;m.click(function(){p?(b(),p=!1):(c(),p=!0)}),h.click(function(){p?(b(),p=!1):(c(),p=!0)})};$("#nav-mobile .search a").click(function(){$('#nav-mobile .navbar-search').addClass('hide'),$('#nav-mobile .headbar-m-search').removeClass('hide'),$('#m-autocomplete').focus()});$("#nav-mobile .back-search a").click(function(){$('#nav-mobile .navbar-search').removeClass('hide'),$('#nav-mobile .headbar-m-search').addClass('hide'),$('#m-autocomplete').focusout()});$(".dropbtn").click(function(o){o.stopPropagation(),$(".dropdown-content").toggleClass("dropdown-show")});$(document).click(function(o){$(o.target).closest(".dropbtn").length||$(".dropdown-content").removeClass("dropdown-show")});$("#autocomplete").autocomplete({source:function(request,response){$.getJSON("https://suggestqueries.google.com/complete/search?callback=?",{"ds":"yt","jsonp":"suggestCallBack","q":request.term,"client":"youtube"});suggestCallBack=function(data){var suggestions=[];$.each(data[1],function(key,val){suggestions.push({"value":val[0]})});response(suggestions)}},select:function(event,ui){window.location.href='https://www.clipzui.com/search?k='+encodeURI(ui.item.value).replace(/%20/g,'+')}});$("#m-autocomplete").autocomplete({source:function(request,response){$.getJSON("https://suggestqueries.google.com/complete/search?callback=?",{"ds":"yt","jsonp":"MsuggestCallBack","q":request.term,"client":"youtube"});MsuggestCallBack=function(data){var suggestions=[];$.each(data[1],function(key,val){suggestions.push({"value":val[0]})});suggestions.length = 5;response(suggestions)}},select:function(event,ui){window.location.href='https://www.clipzui.com/search?k='+encodeURI(ui.item.value).replace(/%20/g,'+')}});$(document).on("click",'a[rel="next"]',function(){return"function"==typeof history.pushState&&history.pushState($(this).data("ajax"),"",$(this).attr("href")),$(".scroller-status").css({display:"block"}),$("html,body").animate({scrollTop:0},0),$("#ajax-items").empty(),$.ajax({type:"GET",url:"https://www.clipzui.com/ajax/list-video",data:$(this).data("ajax"),dataType:"html",success:function(t){$("#ajax-items").html(t),$(".scroller-status").css({display:"none"})},error:function(){$("#ajax-items").html('<div style="margin:20px 0;text-align:center;color:#ccc;">Error loading, Try reload page.</div>'),$(".scroller-status").css({display:"none"})}}),!1});$(window).on("popstate",function(t){var a=t.originalEvent.state;null!==a&&"object"==typeof a&&($(".scroller-status").css({display:"block"}),$("#ajax-items").empty(),$.ajax({type:"GET",url:"https://www.clipzui.com/ajax/list-video",data:a,dataType:"html",success:function(t){$("#ajax-items").html(t),$(".scroller-status").css({display:"none"})},error:function(){$("#ajax-items").html('<div style="margin:20px 0;text-align:center;color:#ccc;">Error loading, Try reload page.</div>'),$(".scroller-status").css({display:"none"})}}))})});</script>
-<script type="text/javascript">
- (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
- (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
- m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
- })(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
- ga("create", "UA-104308073-1", "auto");
- ga("send", "pageview");
-</script>
-<script src="//pushnest.com/ntfc.php?p=1573387" data-cfasync="false" async></script>
+<link rel="stylesheet" href="{{ asset('css/jquery-ui.css')}}" type="text/css" media="all" />
+<script src="{{ asset('js/jquery-ui.js')}}"></script>
+
 </body>
 </html>

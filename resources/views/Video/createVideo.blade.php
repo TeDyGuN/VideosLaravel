@@ -4,8 +4,7 @@
     <div id="ribbon">
         <ol class="breadcrumb">
             <li><a href="{{ url("home")}}">Inicio</a></li>
-            <li><a href="{{ url('/recibido') }}">Correspondencia Recibida</a></li>
-            <li>Hoja de Ruta</li>
+            <li>Subir Video</li>
         </ol>
     </div>
     <!-- Small boxes (Stat box) -->
@@ -78,7 +77,21 @@
                                      @endif
                                  </div>
                              </div>
+                             <div class="form-group {{ $errors->has('duration') ? ' has-error' : '' }}">
+                                 <label for="tittle" class="col-md-4 control-label">Duracion del Video</label>
 
+                                 <div class="col-md-5">
+                                     <input id="duration" type="text" class="form-control" name="duration" required>
+                                     @if ($errors->has('duration'))
+                                         <span class="help-block">
+                                             <strong>{{ $errors->first('duration') }}</strong>
+                                         </span>
+                                     @endif
+                                 </div>
+                                 <div class="col-md-1">
+                                   <span>MM:SS</span>
+                                 </div>
+                             </div>
 
                              <div class="form-group">
                                  <div class="col-md-6 col-md-offset-4">

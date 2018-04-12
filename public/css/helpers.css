@@ -1,5 +1,8 @@
 .links-nav{
   font-size: 18px;
   font-weight: 700;
-  color: white;  
+  color: white;
+}
+ul.list-video li .thumb img{
+   height: 200px !important;
 }
