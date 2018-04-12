@@ -6,3 +6,10 @@
 ul.list-video li .thumb img{
    height: 200px !important;
 }
+.video-js .vjs-tech {
+  position: relative;
+}
+.video-js {
+  width: 100%;
+  height: auto;
+}

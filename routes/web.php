@@ -30,3 +30,8 @@ Route::post('/video/save', 'VideoController@saveVideo');
 Route::get('/imagen/{archivo}', 'VideoController@getImage');
 //Descripcion de Video
 Route::get('/video/{id}', 'VideoController@getDescription');
+Route::get('/getVideo/{archivo}', 'VideoController@getVideo');
+
+//categoria
+Route::get('categoria', 'CategoriaController@index');
+Route::post('categoria/save', 'CategoriaController@save');

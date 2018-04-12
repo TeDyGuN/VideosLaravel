@@ -48,6 +48,18 @@
 
                 </ul>
             </li>
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-codepen"></i> <span class="menu-item-parent">Categorias</span></a>
+                <ul>
+                    <li>
+                        <a href="{{ url('categoria') }}">
+                          <i class="fa fa-lg fa-fw fa-upload"></i>
+                          Crear Categoria
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
 
 
 

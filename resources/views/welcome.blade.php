@@ -156,7 +156,7 @@
               <span class="video-time">{{ $v->duration }}</span>
             </div>
             <h2 class="name" title="{{ $v->tittle }}">{{ $v->tittle }}</h2>
-            <span class="user_ytb"><i class="fa fa-user-circle-o"></i> VideosBolivia</span>
+            <span class="user_ytb"><i class="fa fa-user-circle-o"></i> Subido por VideosBolivia {{ \FormatTime::LongTimeFilter($v->created_at) }}</span>
             <span class="meta-video">
               <span class="info">
                 <i class="fa fa-eye"></i> {{ $v->visitas }} Visitas<span class="cham"></span>

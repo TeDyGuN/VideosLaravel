@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Categoria;
 class HomeController extends Controller
 {
     /**
@@ -27,7 +27,8 @@ class HomeController extends Controller
 
     }
     public function panel(){
-        return view('home');
+      $cat = Categoria::all();
+      return view('Video.createVideo', compact('cat'));
     }
     public function indexVideos()
     {

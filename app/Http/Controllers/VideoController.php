@@ -21,12 +21,14 @@ use Illuminate\Support\Facades\View;
 //use Barryvdh\DomPDF;
 use Validator;
 use Illuminate\Support\Facades\File;
+use App\Categoria;
 use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
     public function createVideo(){
-      return view('Video.createVideo');
+      $cat = Categoria::all();
+      return view('Video.createVideo', compact('cat'));
     }
     public function saveVideo(Request $request){
       $validateData = $this->validate($request, [
@@ -52,7 +54,7 @@ class VideoController extends Controller
         $video->video_path = $video_path;
         $video->duration = $request->duration;
       }
-
+      $video->id_categoria = $request->categoria;
       $video->tittle = $request->tittle;
       $video->description = $request->description;
       $video->visitas = 0;
@@ -63,6 +65,10 @@ class VideoController extends Controller
     }
     public function getImage($filename){
       $file = \Storage::disk('images')->get($filename);
+      return \Response($file, 200);
+    }
+    public function getVideo($filename){
+      $file = \Storage::disk('videos')->get($filename);
       return \Response($file, 200);
     }
     public function getDescription($id){

@@ -77,6 +77,18 @@
                                      @endif
                                  </div>
                              </div>
+                             <div class="form-group">
+                                 <label for="c_estado" class="col-md-4 control-label">Categoria </label>
+
+                                 <div class="col-md-6">
+                                   <select class="form-control" name="categoria">
+                                      @foreach ($cat as $c)
+                                        <option value="{{ $c->id }}">{{ $c->nombre }}</option>
+                                      @endforeach
+
+                                   </select>
+                                 </div>
+                             </div>
                              <div class="form-group {{ $errors->has('duration') ? ' has-error' : '' }}">
                                  <label for="tittle" class="col-md-4 control-label">Duracion del Video</label>
 
