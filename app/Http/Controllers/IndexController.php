@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Video;
+use App\Categoria;
 
 class IndexController extends Controller
 {
     public function index()
     {
         $videos = Video::get();
-        return view('welcome', compact('videos'));
+        $categorias = Categoria::get();
+        return view('welcome', compact('videos', 'categorias'));
     }
 }

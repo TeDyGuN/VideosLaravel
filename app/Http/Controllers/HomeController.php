@@ -27,11 +27,14 @@ class HomeController extends Controller
 
     }
     public function panel(){
+
       $cat = Categoria::all();
       return view('Video.createVideo', compact('cat'));
     }
     public function indexVideos()
     {
-        return view('welcome');
+
+        $categorias = Categoria::get();
+        return view('welcome', compact('categorias'));
     }
 }

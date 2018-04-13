@@ -14,7 +14,7 @@
 Route::get('/', 'IndexController@index');
 
 Auth::routes();
-
+Route::Resource('video-api', 'VideoApiController');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Rutas Controlador Videos
@@ -31,6 +31,9 @@ Route::get('/imagen/{archivo}', 'VideoController@getImage');
 //Descripcion de Video
 Route::get('/video/{id}', 'VideoController@getDescription');
 Route::get('/getVideo/{archivo}', 'VideoController@getVideo');
+Route::get('/listarVideo', 'VideoController@listar');
+Route::get('/modificarVideo/{id}', 'VideoController@modificar');
+Route::post('/updateVideo', 'VideoController@update');
 
 //categoria
 Route::get('categoria', 'CategoriaController@index');

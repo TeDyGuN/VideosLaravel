@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{ asset('css/helpers.css')}}" type="text/css" media="all" />
   <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('plantilla/css/font-awesome.min.css') }}">
 
-  /<script src="{{ asset('js/jquery.min.js' )}}"></script>
+  <script src="{{ asset('js/jquery.min.js' )}}"></script>
 	<!--[if lt IE 9]>
 	<script src="https://www.clipzui.com/assets/js/html5shiv.min.js"></script>
 	<script src="https://www.clipzui.com/assets/js/respond.min.js"></script>
@@ -91,37 +91,13 @@
 </nav>
 <div class="pushy pushy-left">
 <div class="scrollbar">
-<h3><i class="fa fa-indent"></i> Category</h3><span class="close"><a href="javascript:;"><i class="fa fa-times"></i></a></span>
+<h3><i class="fa fa-indent"></i> Categorias</h3><span class="close"><a href="javascript:;"><i class="fa fa-times"></i></a></span>
 <ul>
-	<li><a href="https://www.clipzui.com/category/film-animation"><i class="fa fa-film"></i> Film & Animation</a></li>
-	<li><a href="https://www.clipzui.com/category/autos-vehicles"><i class="fa fa-car"></i> Autos & Vehicles</a></li>
-	<li><a href="https://www.clipzui.com/category/music"><i class="fa fa-music"></i> Music</a></li>
-	<li><a href="https://www.clipzui.com/category/pets-animals"><i class="fa fa-paw"></i> Pets & Animals</a></li>
-	<li><a href="https://www.clipzui.com/category/sports"><i class="fa fa-futbol-o"></i> Sports</a></li>
-	<li><a href="https://www.clipzui.com/category/travel-events"><i class="fa fa-globe"></i> Travel & Events</a></li>
-	<li><a href="https://www.clipzui.com/category/gaming"><i class="fa fa-gamepad"></i> Gaming</a></li>
-	<li><a href="https://www.clipzui.com/category/comedy"><i class="fa fa-smile-o"></i> Comedy</a></li>
-	<li><a href="https://www.clipzui.com/category/entertainment"><i class="fa fa-star-o"></i> Entertainment</a></li>
-	<li><a href="https://www.clipzui.com/category/howto-style"><i class="fa fa-thumbs-o-up"></i> Howto & Style</a></li>
-	<li><a href="https://www.clipzui.com/category/education"><i class="fa fa-graduation-cap"></i> Education</a></li>
-	<li><a href="https://www.clipzui.com/category/science-technology"><i class="fa fa-flask"></i> Science & Technology</a></li>
+  @foreach ($categorias as $c)
+    <li><a href="#"><i class="fa fa-film"></i>{{ $c->nombre}}</a></li>
+  @endforeach
 </ul>
-<h3><i class="fa fa-indent"></i> Funny & Fails</h3>
-<ul>
-	<li><a href="https://www.clipzui.com/search?k=funny+video" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny videos</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+fail" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny fails</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+baby" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny baby</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+sport" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny sport</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+animal" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny animal</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+magic" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny magic</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+prank" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny prank</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+vine" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny vines</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+viral" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny viral</a></li>
-	<li><a href="https://www.clipzui.com/search?k=funny+moment" rel="search"><i class="fa fa-arrow-circle-right"></i> Funny moments</a></li>
-	<li><a href="https://www.clipzui.com/search?k=epic+fail" rel="search"><i class="fa fa-arrow-circle-right"></i> Epic fails</a></li>
-	<li><a href="https://www.clipzui.com/search?k=animal+fail" rel="search"><i class="fa fa-arrow-circle-right"></i> Animal fails</a></li>
-	<li><a href="https://www.clipzui.com/search?k=stupid+fail" rel="search"><i class="fa fa-arrow-circle-right"></i> Stupid fails</a></li>
-</ul>
+
 <div style="padding:10px;background:#222;"></div>
 </div>
 </div>
@@ -202,6 +178,7 @@
 </div>
 <link rel="stylesheet" href="{{ asset('css/jquery-ui.css')}}" type="text/css" media="all" />
 <script src="{{ asset('js/jquery-ui.js')}}"></script>
-
+<script>function scrolltop(){$(window).scroll(function(){$(this).scrollTop()>500?$(".back-fixed").fadeIn(600):$(".back-fixed").fadeOut(600)}),$("#scrolltop").click(function(o){return o.preventDefault(),$("html, body").animate({scrollTop:0},600),!1})};var suggestCallBack,MsuggestCallBack;$(function(){scrolltop();function a(){e.toggleClass(j),d.toggleClass(i),f.toggleClass(k),g.toggleClass(l)}function b(){e.addClass(j),d.animate({left:"0px"},n),f.animate({left:o},n),g.animate({left:o},n)}function c(){e.removeClass(j),d.animate({left:"-"+o},n),f.animate({left:"0px"},n),g.animate({left:"0px"},n)}var d=$(".pushy"),e=$("body"),f=$("#container"),g=$(".push"),h=$(".site-overlay"),i="pushy-left pushy-open",j="pushy-active",k="container-push",l="push-push",m=$("#menu-btn, .pushy a"),n=200,o=d.width()+"px";if(cssTransforms3d=function(){var a=document.createElement("p"),b=!1,c={webkitTransform:"-webkit-transform",OTransform:"-o-transform",msTransform:"-ms-transform",MozTransform:"-moz-transform",transform:"transform"};document.body.insertBefore(a,null);for(var d in c)void 0!==a.style[d]&&(a.style[d]="translate3d(1px,1px,1px)",b=window.getComputedStyle(a).getPropertyValue(c[d]));return document.body.removeChild(a),void 0!==b&&b.length>0&&"none"!==b}())m.click(function(){a()}),h.click(function(){a()});else{d.css({left:"-"+o}),f.css({"overflow-x":"hidden"});var p=!0;m.click(function(){p?(b(),p=!1):(c(),p=!0)}),h.click(function(){p?(b(),p=!1):(c(),p=!0)})};$("#nav-mobile .search a").click(function(){$('#nav-mobile .navbar-search').addClass('hide'),$('#nav-mobile .headbar-m-search').removeClass('hide'),$('#m-autocomplete').focus()});$("#nav-mobile .back-search a").click(function(){$('#nav-mobile .navbar-search').removeClass('hide'),$('#nav-mobile .headbar-m-search').addClass('hide'),$('#m-autocomplete').focusout()});$(".dropbtn").click(function(o){o.stopPropagation(),$(".dropdown-content").toggleClass("dropdown-show")});$(document).click(function(o){$(o.target).closest(".dropbtn").length||$(".dropdown-content").removeClass("dropdown-show")});$("#autocomplete").autocomplete({source:function(request,response){$.getJSON("https://suggestqueries.google.com/complete/search?callback=?",{"ds":"yt","jsonp":"suggestCallBack","q":request.term,"client":"youtube"});suggestCallBack=function(data){var suggestions=[];$.each(data[1],function(key,val){suggestions.push({"value":val[0]})});response(suggestions)}},select:function(event,ui){window.location.href='https://www.clipzui.com/search?k='+encodeURI(ui.item.value).replace(/%20/g,'+')}});$("#m-autocomplete").autocomplete({source:function(request,response){$.getJSON("https://suggestqueries.google.com/complete/search?callback=?",{"ds":"yt","jsonp":"MsuggestCallBack","q":request.term,"client":"youtube"});MsuggestCallBack=function(data){var suggestions=[];$.each(data[1],function(key,val){suggestions.push({"value":val[0]})});suggestions.length = 5;response(suggestions)}},select:function(event,ui){window.location.href='https://www.clipzui.com/search?k='+encodeURI(ui.item.value).replace(/%20/g,'+')}});$(document).on("click",'a[rel="next"]',function(){return"function"==typeof history.pushState&&history.pushState($(this).data("ajax"),"",$(this).attr("href")),$(".scroller-status").css({display:"block"}),$("html,body").animate({scrollTop:0},0),$("#ajax-items").empty(),$.ajax({type:"GET",url:"https://www.clipzui.com/ajax/list-video",data:$(this).data("ajax"),dataType:"html",success:function(t){$("#ajax-items").html(t),$(".scroller-status").css({display:"none"})},error:function(){$("#ajax-items").html('<div style="margin:20px 0;text-align:center;color:#ccc;">Error loading, Try reload page.</div>'),$(".scroller-status").css({display:"none"})}}),!1});$(window).on("popstate",function(t){var a=t.originalEvent.state;null!==a&&"object"==typeof a&&($(".scroller-status").css({display:"block"}),$("#ajax-items").empty(),$.ajax({type:"GET",url:"https://www.clipzui.com/ajax/list-video",data:a,dataType:"html",success:function(t){$("#ajax-items").html(t),$(".scroller-status").css({display:"none"})},error:function(){$("#ajax-items").html('<div style="margin:20px 0;text-align:center;color:#ccc;">Error loading, Try reload page.</div>'),$(".scroller-status").css({display:"none"})}}))})});</script>
+<script type="text/javascript">
 </body>
 </html>

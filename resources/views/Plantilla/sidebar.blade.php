@@ -45,6 +45,12 @@
                           Subir
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('listarVideo') }}">
+                          <i class="fa fa-lg fa-fw fa-arrow-down"></i>
+                          Modificar
+                        </a>
+                    </li>
 
                 </ul>
             </li>

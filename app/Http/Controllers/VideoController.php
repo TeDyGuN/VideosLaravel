@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Video;
 use App\Comment;
 
+
 use App\User;
 
 use App\Http\Controllers\Controller;
@@ -72,11 +73,30 @@ class VideoController extends Controller
       return \Response($file, 200);
     }
     public function getDescription($id){
-
-
       $video = Video::find($id);
       $video->visitas = $video->visitas + 1;
       $video->save();
-      return view('Video.videoDescription', compact('video'));
+      $categorias = Categoria::get();
+      $otros = Video::where('id_categoria', $video->id_categoria)
+                ->take(5)
+                ->get();
+      return view('Video.videoDescription', compact('video', 'categorias', 'otros', 'otros'));
+    }
+    public function listar(){
+      $videos = Video::paginate(10);
+      return view('Video.listar', compact('videos'));
+    }
+    public function modificar($id)
+    {
+        $video = Video::find($id);
+        return view('Video.modificar', compact('video'));
+    }
+    public function update(Request $request){
+      $video = Video::find($request->id);
+      $video->tittle = $request->titulo;
+      $video->description = $request->description;
+      $video->duration = $request->duration;
+      $video->save();
+      return Redirect::back()->with(['success' => ' ']);
     }
 }
