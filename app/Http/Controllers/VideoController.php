@@ -99,4 +99,24 @@ class VideoController extends Controller
       $video->save();
       return Redirect::back()->with(['success' => ' ']);
     }
+    public function search($key = null)
+    {
+      if(is_null($key)){
+        $search = \Request::get('key');
+        return redirect()->route('videoSearch', array('key' => $search));
+      }
+
+      $videos = Video::where('tittle', 'LIKE', '%'.$key.'%')
+              ->get();
+      $categorias = Categoria::get();
+      return view('welcome', compact('videos', 'categorias', 'key'));
+    }
+    public function categoria($id)
+    {
+      $videos = Video::where('id_categoria', $id)
+                ->get();
+      $categorias = Categoria::get();
+      $key = null;
+      return view('welcome', compact('videos', 'categorias', 'key'));
+    }
 }

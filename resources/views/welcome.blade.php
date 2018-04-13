@@ -29,8 +29,8 @@
       <a href="{{ url('/')}} "><img src="{{ asset('img/logo.png')}}" alt="Videos Bolivia"></a>
     </li>
 	   <li class="search">
-		     <form class="form-wrapper cf" method="get" action="https://www.clipzui.com/search">
-			        <input id="autocomplete" autocomplete="off" type="text" placeholder="Buscar..." name="k">
+		     <form class="form-wrapper cf" method="get" action="{{ url('search')}}">
+			        <input id="autocomplete" autocomplete="off" type="text" placeholder="Buscar..." name="key" required>
 			        <button type="submit"><i class="fa fa-search"></i></button>
 		     </form>
     </li>
@@ -50,7 +50,7 @@
           <a class="links-nav" href="{{ route('logout') }}"
               onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
-              Logout |
+              Salir |
           </a>
 
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -69,7 +69,7 @@
 		  <a href="javascript:;"><i class="fa fa-bars fa-lg"></i></a>
 		</div>
 		<div class="logo">
-		  <a href="https://www.clipzui.com/"><img src="https://www.clipzui.com/assets/images/logo.png" alt="ClipZui.Com"></a>
+		  <a href="#"><img src="https://www.clipzui.com/assets/images/logo.png" alt="ClipZui.Com"></a>
 		</div>
 		<div class="search">
 		  <a class="m_search" href="javascript:;"><i class="fa fa-search"></i></a>
@@ -80,10 +80,10 @@
 			<a href="javascript:;"><i class="fa fa-arrow-left"></i></a>
 		</div>
 		<div class="mm-search">
-		<form class="form-wrapper cf" method="get" action="https://www.clipzui.com/search">
-			<input id="m-autocomplete" autocomplete="off" type="text" placeholder="Search..." name="k">
-			<button type="submit"><i class="fa fa-search"></i></button>
-		</form>
+      <form class="form-wrapper cf" method="get" action="{{ url('search')}}">
+           <input id="autocomplete" autocomplete="off" type="text" placeholder="Buscar..." name="key" required>
+           <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
 		</div>
 	</div>
 </div>
@@ -94,7 +94,7 @@
 <h3><i class="fa fa-indent"></i> Categorias</h3><span class="close"><a href="javascript:;"><i class="fa fa-times"></i></a></span>
 <ul>
   @foreach ($categorias as $c)
-    <li><a href="#"><i class="fa fa-film"></i>{{ $c->nombre}}</a></li>
+    <li><a href="{{ url('categorias/'.$c->id ) }}"><i class="fa fa-film"></i>{{ $c->nombre}}</a></li>
   @endforeach
 </ul>
 
@@ -108,7 +108,13 @@
 <div class="blocktitle">
 	<div class="filter"><button class="dropbtn"><span class="text">Relevance</span> <i class="fa fa-sort-desc"></i></button><div class="dropdown-content"><a href="https://www.clipzui.com/category/sports?sort=date">Upload date</a><a href="https://www.clipzui.com/category/sports?sort=view">View count</a><a href="https://www.clipzui.com/category/sports?sort=rating">Rating</a></div></div>
 	<div class="title">
-		<i class="fa fa-video-camera"></i> <h1>Videos Musicales Top Bolivia</h1>
+    @if($key == null)
+
+  		<i class="fa fa-video-camera"></i> <h1>Videos Bolivia</h1>
+    @else
+
+  		<i class="fa fa-video-camera"></i> <h1>Busqueda de {{$key}}</h1>
+    @endif
 	</div>
 </div>
 

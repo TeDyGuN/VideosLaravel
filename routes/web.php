@@ -34,7 +34,12 @@ Route::get('/getVideo/{archivo}', 'VideoController@getVideo');
 Route::get('/listarVideo', 'VideoController@listar');
 Route::get('/modificarVideo/{id}', 'VideoController@modificar');
 Route::post('/updateVideo', 'VideoController@update');
-
+//Route::get('/search/{key?}', 'VideoController@search')->as('videoSearch');
+Route::get('/search/{key?}', array(
+  'as'  => 'videoSearch',
+  'uses'  => 'VideoController@search'
+));
 //categoria
 Route::get('categoria', 'CategoriaController@index');
 Route::post('categoria/save', 'CategoriaController@save');
+Route::get('categorias/{id}', 'VideoController@categoria');

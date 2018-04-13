@@ -12,6 +12,7 @@ class IndexController extends Controller
     {
         $videos = Video::get();
         $categorias = Categoria::get();
-        return view('welcome', compact('videos', 'categorias'));
+        $key = null;
+        return view('welcome', compact('videos', 'categorias', 'key'));
     }
 }

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,10 +32,10 @@
             <a href="{{ url('/')}} "><img src="{{ asset('img/logo.png')}}" alt="Videos Bolivia"></a>
           </li>
         	<li class="search">
-        		<form class="form-wrapper cf" method="get" action="https://www.clipzui.com/search">
-        			<input id="autocomplete" autocomplete="off" type="text" placeholder="Buscar..." name="k">
-        			<button type="submit"><i class="fa fa-search"></i></button>
-        		</form>
+            <form class="form-wrapper cf" method="get" action="{{ url('search')}}">
+                 <input id="autocomplete" autocomplete="off" type="text" placeholder="Buscar..." name="key" required>
+                 <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
             </li>
             @guest
                 <li class="pull-right" style="padding-top: 6px;"><a class="links-nav" href="{{ route('login') }}">| Ingresar</a></li>
@@ -54,7 +53,7 @@
                   <a class="links-nav" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-                      Logout |
+                      Salir |
                   </a>
 
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -81,10 +80,10 @@
           			<a href="javascript:;"><i class="fa fa-arrow-left"></i></a>
           		</div>
           		<div class="mm-search">
-          		<form class="form-wrapper cf" method="get" action="https://www.clipzui.com/search">
-          			<input id="m-autocomplete" autocomplete="off" type="text" placeholder="Buscar..." name="k">
-          			<button type="submit"><i class="fa fa-search"></i></button>
-          		</form>
+                <form class="form-wrapper cf" method="get" action="{{ url('search')}}">
+                     <input id="autocomplete" autocomplete="off" required type="text" placeholder="Buscar..." name="key">
+                     <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
           		</div>
           	</div>
           </div>
@@ -95,7 +94,7 @@
           <h3><i class="fa fa-indent"></i> Categorias</h3><span class="close"><a href="javascript:;"><i class="fa fa-times"></i></a></span>
           <ul>
             @foreach ($categorias as $c)
-            	<li><a href="#"><i class="fa fa-film"></i>{{ $c->nombre}}</a></li>
+              <li><a href="{{ url('categorias/'.$c->id ) }}"><i class="fa fa-film"></i>{{ $c->nombre}}</a></li>
             @endforeach
 
           </ul>
